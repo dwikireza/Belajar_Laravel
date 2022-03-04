@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,91 +34,8 @@ Route::get('/about', function () {
 
 
 
-Route::get('/blog', function () {
-    $blog_posts = [
-        [
-            "title"     => "Judul Post Pertama",
-            "slug"      => "judul-post-pertama",
-            "author"    => "Dwiki Reza",
-            "body"      => " Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus itaque
-            qui ratione mollitia minus ullam ab doloremque voluptatem, consequuntur
-            distinctio dolores aliquam corporis! Fugit commodi incidunt sequi
-            suscipit debitis, quidem totam saepe omnis magni nulla. Asperiores magni
-            quisquam facilis quidem, neque sapiente iure harum quia numquam sunt
-            dolores fugit minus ad porro, vero corrupti ipsa cum eligendi dolore
-            odit sit explicabo. Quibusdam illum at aliquid iure dolores suscipit
-            quis. Illo recusandae aspernatur, mollitia atque a cumque? Nam deleniti
-            reprehenderit fugiat."
-        ],
+Route::get('/posts', [PostController::class, 'index']);
 
-        [
-            "title"     => "Judul Post Kedua",
-            "slug"      => "judul-post-kedua",
-            "author"    => "Muhammad Dwiki",
-            "body"      => " Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus itaque
-            qui ratione mollitia minus ullam ab doloremque voluptatem, consequuntur
-            distinctio dolores aliquam corporis! Fugit commodi incidunt sequi
-            suscipit debitis, quidem totam saepe omnis magni nulla. Asperiores magni
-            quisquam facilis quidem, neque sapiente iure harum quia numquam sunt
-            dolores fugit minus ad porro, vero corrupti ipsa cum eligendi dolore
-            odit sit explicabo. Quibusdam illum at aliquid iure dolores suscipit
-            quis. Illo recusandae aspernatur, mollitia atque a cumque? Nam deleniti
-            reprehenderit fugiat."
-        ]
-        ];
-
-
-
-    return view('posts', [
-        "title" => "Post",
-        "posts"  => $blog_posts
-    ]);
-});
 
 //halaman single posts
-
-
-Route::get('posts/{slug}', function($slug){
-    $blog_posts = [
-        [
-            "title"     => "Judul Post Pertama",
-            "slug"      => "judul-post-pertama",
-            "author"    => "Dwiki Reza",
-            "body"      => " Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus itaque
-            qui ratione mollitia minus ullam ab doloremque voluptatem, consequuntur
-            distinctio dolores aliquam corporis! Fugit commodi incidunt sequi
-            suscipit debitis, quidem totam saepe omnis magni nulla. Asperiores magni
-            quisquam facilis quidem, neque sapiente iure harum quia numquam sunt
-            dolores fugit minus ad porro, vero corrupti ipsa cum eligendi dolore
-            odit sit explicabo. Quibusdam illum at aliquid iure dolores suscipit
-            quis. Illo recusandae aspernatur, mollitia atque a cumque? Nam deleniti
-            reprehenderit fugiat."
-        ],
-
-        [
-            "title"     => "Judul Post Kedua",
-            "slug"      => "judul-post-kedua",
-            "author"    => "Muhammad Dwiki",
-            "body"      => " Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus itaque
-            qui ratione mollitia minus ullam ab doloremque voluptatem, consequuntur
-            distinctio dolores aliquam corporis! Fugit commodi incidunt sequi
-            suscipit debitis, quidem totam saepe omnis magni nulla. Asperiores magni
-            quisquam facilis quidem, neque sapiente iure harum quia numquam sunt
-            dolores fugit minus ad porro, vero corrupti ipsa cum eligendi dolore
-            odit sit explicabo. Quibusdam illum at aliquid iure dolores suscipit
-            quis. Illo recusandae aspernatur, mollitia atque a cumque? Nam deleniti
-            reprehenderit fugiat."
-        ]
-        ];
-
-        $new_post =[];
-        foreach ($blog_posts as $post) {
-            if($post["slug"] == $slug){
-                $new_post =$post;
-            }
-        }
-    return view('post',[
-        "title"  => "Single Post",
-        "post"   => $new_post
-    ]);
-});
+Route::get('/posts/{slug}', [PostController::class, 'show']);
