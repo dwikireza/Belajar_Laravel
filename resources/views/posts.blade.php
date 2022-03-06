@@ -1,14 +1,14 @@
 @extends('layout.main')
 
 @section('container')
-<H1>INI HALAMAN HOME</H1>
+<H1>IHalaman | Blog</H1>
 <article class="mb-5">
 
     @foreach ($posts as $post)
     <h2>
-        <a href="/posts/{{ $post["slug"] }}">{{ $post["title"] }}</a>
+        <a href="/posts/{{ $post->slug   }}">{{ $post->title }}</a>
     </h2>
-    <p>{{ $post["body"] }}</p>
+    <p>{{ $post->excerpt }}</p>
 
     @endforeach
 </article>
