@@ -1,15 +1,22 @@
 @extends('layout.main')
 
 @section('container')
-<H1>Halaman | Blog</H1>
-<article class="mb-5">
+<H1>Halaman | Blog Posts</H1>
+
 
     @foreach ($posts as $post)
-    <h2>
-        <a href="/posts/{{ $post->slug   }}">{{ $post->title }}</a>
-    </h2>
+<article class="mb-5 border-bottom pb-4" >
+    <h2><a href="/posts/{{ $post->slug }}" class="text-decoration-none">{{ $post->title }}
+    </a></h2>
+
+    <p>By <a href="" class="text-decoration-none">{{ $post->user->name }}</a>
+        <a href="/categories/{{ $post->category->slug }}"
+        class="text-decoration-none">{{ $post->category->name }}</a></p>
+
     <p>{{ $post->excerpt }}</p>
 
-    @endforeach
+    <a href="/posts/{{ $post->slug }}" class="text-decoration-none">Read More.. </a>
 </article>
+    @endforeach
+
 @endsection
